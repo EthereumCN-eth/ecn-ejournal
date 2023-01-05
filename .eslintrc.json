@@ -4,6 +4,14 @@
     "plugin:react/jsx-runtime",
     "plugin:@next/next/recommended"
   ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        // use an array
+        "project": ["./tsconfig.json"]
+      }
+    }
+  },
   "rules": {
     // "react/no-unknown-property": ["error", { "ignore": ["css"] }],
     "no-else-return": [0],

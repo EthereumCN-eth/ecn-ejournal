@@ -3,10 +3,13 @@ import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
 import { useAtom } from "jotai";
 import { NextSeo } from "next-seo";
 
+import { useMonthMsgQuery } from "@/query/queries";
+
 import { isExpandAtom } from "./isExpanedAtom";
 import { SideSection } from "./SideSection";
 
 const Home = () => {
+  useMonthMsgQuery({ dateStr: "2022-11" });
   const [isOpen] = useAtom(isExpandAtom);
   const [isLargerW] = useMediaQuery("(min-width: 1100px)");
   const toolSideW = isLargerW ? (isOpen ? "30%" : "2.5rem") : "100%";

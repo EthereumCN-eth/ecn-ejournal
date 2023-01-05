@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Box, Center, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import {
   BsArrowDownCircle,
@@ -10,6 +9,7 @@ import {
   BsArrowUpCircle,
 } from "react-icons/bs";
 
+import { DatePickerView } from "./DatePickerView";
 import { isExpandAtom } from "./isExpanedAtom";
 
 const Icon = ({
@@ -53,7 +53,7 @@ export const SideSection = () => {
         transition={isOpen ? "opacity 2s ease" : ""}
       >
         {/* {" "} */}
-        <DayPicker mode="single" />
+        <DatePickerView />
       </Box>
       <Center
         position="absolute"
