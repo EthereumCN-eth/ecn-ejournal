@@ -1,11 +1,14 @@
 /* eslint-disable no-nested-ternary */
-import { Box, Flex, useMediaQuery } from "@chakra-ui/react";
+import { Flex, useMediaQuery } from "@chakra-ui/react";
+import useSize from "@react-hook/size";
 import { useAtom } from "jotai";
 import { NextSeo } from "next-seo";
+import { useRef } from "react";
 
-import { useMonthMsgQuery } from "@/query/queries";
+import { useMonthMsgQuery } from "@/components/Home/query/queries";
 
 import { isExpandAtom } from "./isExpanedAtom";
+import { MessagesSection } from "./MessagesSection";
 import { SideSection } from "./SideSection";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
@@ -13,6 +16,9 @@ const Home = () => {
   useMonthMsgQuery({ dateStr: "2022-11" });
   const [isOpen] = useAtom(isExpandAtom);
   const [isLargerW] = useMediaQuery("(min-width: 1100px)");
+
+  const contentSectionRef = useRef(null);
+  const [, height] = useSize(contentSectionRef);
   const toolSideW = isLargerW
     ? isOpen
       ? "30%"
@@ -23,11 +29,15 @@ const Home = () => {
   const contentW = isLargerW ? (isOpen ? "70%" : "100%") : "100%";
   const toolSideH = isLargerW
     ? isOpen
-      ? "calc(100vh - 100px)"
+      ? height
+        ? `${height}px`
+        : "calc(100vh - 100px)"
       : " 2.5rem"
     : isOpen
     ? "320px"
     : "2.5rem";
+  // console.log("heigth", height);
+  // const toolSideMinH = isLargerW ? "calc(100vh - 100px)" : "320px";
   return (
     <>
       <NextSeo title="ECN Express" />
@@ -40,7 +50,7 @@ const Home = () => {
         px="40px"
         w="full"
         pt="5px"
-        position="relative"
+        // position="fixed"
         maxW="1200px"
       >
         <Flex
@@ -50,26 +60,35 @@ const Home = () => {
           h={toolSideH}
           position="relative"
           borderRadius={isOpen ? "0" : "100%"}
+          // minH={toolSideMinH}
           transition={
-            isOpen
-              ? "width 0.5s ease, height 1s ease "
-              : "width 0.5s ease, height 1s ease 0.5s, border-radius 0.5s ease 1.5s"
+            isLargerW
+              ? isOpen
+                ? "width 0.5s ease , height 1s ease"
+                : "width 0.5s ease, height 1s ease 0.5s, border-radius 0.5s ease 1.5s"
+              : isOpen
+              ? "height 0.5s ease , width 1s ease 0.6s"
+              : "height 0.5s ease, width 1s ease 0.5s, border-radius 0.5s ease 1.5s"
           }
           bgColor="gray.100"
         >
           <SideSection />
         </Flex>
 
-        <Box
+        <Flex
+          direction="column"
+          align="center"
+          ref={contentSectionRef}
           // eslint-disable-next-line no-nested-ternary
           w={contentW}
           // w={["100%", isOpen ? "70%" : "100%"]}
           minHeight="calc(100vh - 100px)"
-          // bgColor="red.100"
-          transition="all 0.5s ease"
+          bgColor="red.100"
+          transition={isOpen ? "all 0.5s ease 0.5s" : "all 0.5s ease "}
         >
           {/*  */}
-        </Box>
+          <MessagesSection />
+        </Flex>
 
         {/* <SomeText />
       <SomeImage />
