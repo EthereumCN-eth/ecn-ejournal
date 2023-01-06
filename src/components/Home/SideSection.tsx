@@ -50,7 +50,8 @@ export const SideSection = () => {
     <>
       <Box
         opacity={isOpen ? 1 : 0}
-        transition={isOpen ? "opacity 2s ease" : ""}
+        zIndex={isOpen ? 1 : -1}
+        transition={isOpen ? "opacity 2s ease 1s" : ""}
       >
         {/* {" "} */}
         <DatePickerView />
@@ -60,6 +61,8 @@ export const SideSection = () => {
         inset={insetStr}
         transform={transformStr}
         zIndex={10}
+        bgColor="gray.100"
+        borderRadius="50%"
       >
         <IconButton
           onClick={() => toggle()}

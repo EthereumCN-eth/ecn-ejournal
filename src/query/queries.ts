@@ -16,6 +16,8 @@ export const useMonthMsgQuery = <T>({
     queryKey: ["message", dateStr],
     queryFn: () => fetchMonthMessage({ dateStr }),
     select: select ?? undefined,
+    keepPreviousData: true,
+    staleTime: 60 * 1000,
   });
   // console.log("data", data);
   return data;

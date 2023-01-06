@@ -4,22 +4,27 @@ import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   return (
-    <Flex direction="column" align="center">
-      <Flex
-        // bgColor="red.100"
-        h="100px"
-        as="header"
-        width="full"
-        p="40px"
-        align="center"
-        justify="space-between"
-      >
-        <Heading>E群志</Heading>
-        <Box>
-          <ThemeToggle />
-        </Box>
-      </Flex>
-      <Divider w="calc(100% - 80px)" />
+    <Flex
+      // bgColor="red.100"
+      h="100px"
+      as="header"
+      width="full"
+      maxW="1200px"
+      p="40px"
+      align="center"
+      justify="space-between"
+      position="relative"
+    >
+      <Heading>E群志</Heading>
+      <Box>
+        <ThemeToggle />
+      </Box>
+      <Divider
+        position="absolute"
+        bottom="0"
+        maxW="1200px"
+        w="calc(100% - 80px)"
+      />
     </Flex>
   );
 };

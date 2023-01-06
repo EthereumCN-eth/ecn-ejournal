@@ -8,7 +8,7 @@ import { defaultSEOConfig } from "../../next-seo.config";
 import Chakra from "@/components/Chakra";
 import Layout from "@/components/layout";
 
-import "styles/globals.css";
+import "@/styles/globals.css";
 
 const queryClient = new QueryClient();
 
