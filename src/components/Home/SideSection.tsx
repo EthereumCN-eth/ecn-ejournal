@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Box, Center, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { useAtom } from "jotai";
-import "react-day-picker/dist/style.css";
 import {
   // BsArrowDownCircle,
   BsArrowLeftCircle,

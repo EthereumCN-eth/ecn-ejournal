@@ -9,6 +9,7 @@ import Chakra from "@/components/Chakra";
 import Layout from "@/components/layout";
 
 import "@/styles/globals.css";
+import "@/components/Home/style.css";
 
 const queryClient = new QueryClient();
 
