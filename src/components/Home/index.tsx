@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { Flex, useMediaQuery } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import useSize from "@react-hook/size";
 import { useAtom } from "jotai";
 import { NextSeo } from "next-seo";
@@ -7,26 +7,27 @@ import { useRef } from "react";
 
 import { useMonthMsgQuery } from "@/components/Home/query/queries";
 
-import { isExpandAtom } from "./isExpanedAtom";
 import { MessagesSection } from "./MessagesSection";
 import { SideSection } from "./SideSection";
+import { isExpandAtom } from "./state/isExpanedAtom";
+import { useIsDesktopQuery } from "./state/useIsDesktopQuery";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const Home = () => {
   useMonthMsgQuery({ dateStr: "2022-11" });
   const [isOpen] = useAtom(isExpandAtom);
-  const [isLargerW] = useMediaQuery("(min-width: 1100px)");
+  const [isLargerW] = useIsDesktopQuery();
 
   const contentSectionRef = useRef(null);
   const [, height] = useSize(contentSectionRef);
   const toolSideW = isLargerW
     ? isOpen
-      ? "30%"
+      ? "35%"
       : "2.5rem"
     : isOpen
     ? "100%"
     : "2.5rem";
-  const contentW = isLargerW ? (isOpen ? "70%" : "100%") : "100%";
+  const contentW = isLargerW ? (isOpen ? "65%" : "100%") : "100%";
   const toolSideH = isLargerW
     ? isOpen
       ? height
@@ -34,7 +35,7 @@ const Home = () => {
         : "calc(100vh - 100px)"
       : " 2.5rem"
     : isOpen
-    ? "320px"
+    ? "330px"
     : "2.5rem";
   // console.log("heigth", height);
   // const toolSideMinH = isLargerW ? "calc(100vh - 100px)" : "320px";
@@ -49,13 +50,14 @@ const Home = () => {
         minHeight="70vh"
         px="40px"
         w="full"
-        pt="5px"
+        pt="60px"
         // position="fixed"
         maxW="1200px"
       >
         <Flex
           direction="column"
-          align="center"
+          // align="center"
+          align={isLargerW ? "flex-start" : "center"}
           w={toolSideW}
           h={toolSideH}
           position="relative"
@@ -70,7 +72,7 @@ const Home = () => {
               ? "height 0.5s ease , width 1s ease 0.6s"
               : "height 0.5s ease, width 1s ease 0.5s, border-radius 0.5s ease 1.5s"
           }
-          bgColor="gray.100"
+          // bgColor="gray.100"
         >
           <SideSection />
         </Flex>
@@ -82,7 +84,7 @@ const Home = () => {
           // eslint-disable-next-line no-nested-ternary
           w={contentW}
           // w={["100%", isOpen ? "70%" : "100%"]}
-          minHeight="calc(100vh - 100px)"
+          minHeight="calc(100vh - 308px)"
           bgColor="red.100"
           transition={isOpen ? "all 0.5s ease 0.5s" : "all 0.5s ease "}
         >
