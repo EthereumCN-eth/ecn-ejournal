@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react";
 import { css } from "@emotion/react";
-import { isSameDay } from "date-fns";
+import { isSameDay, isSameMonth } from "date-fns";
 import { useAtom } from "jotai";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { DayPicker } from "react-day-picker";
 
 import { dateAtom, dateStrAtom, dayAtom } from "../state";
@@ -15,18 +15,21 @@ export const DatePickerView = () => {
   const [selected, setSelected] = useAtom(dayAtom);
   const [month, setMonth] = useAtom(dateAtom);
   const [dateStr] = useAtom(dateStrAtom);
-  const dates = useSelectDisabledDays({
+  const { data: dates } = useSelectDisabledDays({
     dateStr,
   });
-  const nav = useSelectNavMonth({ dateStr });
-  const mounted = useRef(false);
+  const { data: nav, isSuccess } = useSelectNavMonth({ dateStr });
+
   useEffect(() => {
-    if (nav && !isSameDay(month, nav.current) && !mounted.current) {
-      setMonth(nav.current);
-      setSelected(nav.current);
-      mounted.current = true;
+    // eslint-disable-next-line sonarjs/no-collapsible-if
+    if (nav && isSuccess) {
+      if (isSameMonth(month, nav.current)) {
+        setMonth(nav.current);
+        setSelected(nav.current);
+      }
     }
-  }, [month, nav, setMonth, setSelected]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, nav?.current, setMonth, setSelected, month]);
   // console.log(dates);
   return (
     <Box

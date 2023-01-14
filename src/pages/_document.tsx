@@ -21,6 +21,7 @@ class MyDocument extends Document {
           />
           <Meta />
         </Head>
+
         <body>
           <ColorModeScript
             initialColorMode={customTheme.config?.initialColorMode}

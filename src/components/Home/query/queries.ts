@@ -3,6 +3,7 @@ import { formatISO, isSameDay } from "date-fns";
 import uniq from "lodash.uniq";
 import { useCallback } from "react";
 
+import type { ReturnMessages } from "../types";
 import { fetchMonthMessage } from "@/components/Home/query";
 
 export const useMonthMsgQuery = <T>({
@@ -13,7 +14,7 @@ export const useMonthMsgQuery = <T>({
   dateStr: string;
   select?: (data: Awaited<ReturnType<typeof fetchMonthMessage>>) => T;
 }) => {
-  const { data } = useQuery({
+  return useQuery({
     queryKey: ["message", dateStr],
     queryFn: () => fetchMonthMessage({ dateStr }),
     select: select ?? undefined,
@@ -21,7 +22,7 @@ export const useMonthMsgQuery = <T>({
     staleTime: 60 * 1000,
   });
   // console.log("data", data);
-  return data;
+  // return data;
 };
 
 const selectDisableDays = (
@@ -59,19 +60,6 @@ export const useSelectDisabledDays = ({ dateStr }: { dateStr: string }) => {
 export const useSelectNavMonth = ({ dateStr }: { dateStr: string }) => {
   return useMonthMsgQuery({ dateStr, select: selectNavMonth });
 };
-
-type ReturnMessages = ({
-  id: string;
-  expressUrl: string;
-  expressMessage: string;
-  verifiedAt: Date;
-  userId: string;
-  contentType: string;
-} & {
-  user: {
-    name: string;
-  };
-})[];
 
 export const useSelectDayMessages = ({
   dateStr,

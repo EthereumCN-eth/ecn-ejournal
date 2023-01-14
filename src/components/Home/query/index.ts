@@ -1,3 +1,4 @@
+import type { MessageType } from "../types";
 import { NEXT_PUBLIC_API_URL } from "@/constants";
 
 export const fetchMonthMessage = async ({
@@ -12,18 +13,7 @@ export const fetchMonthMessage = async ({
     nextMonthDate: Date;
     previousMonthDate: Date;
   };
-  messagesOfMonth: ({
-    id: string;
-    expressUrl: string;
-    expressMessage: string;
-    verifiedAt: Date;
-    userId: string;
-    contentType: string;
-  } & {
-    user: {
-      name: string;
-    };
-  })[];
+  messagesOfMonth: MessageType[];
 }> => {
   const response = await fetch(
     `${NEXT_PUBLIC_API_URL}/message/?date=${dateStr}`

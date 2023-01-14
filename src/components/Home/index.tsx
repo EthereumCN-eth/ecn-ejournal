@@ -1,11 +1,9 @@
 /* eslint-disable no-nested-ternary */
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import useSize from "@react-hook/size";
 import { useAtom } from "jotai";
 import { NextSeo } from "next-seo";
 import { useRef } from "react";
-
-import { useMonthMsgQuery } from "@/components/Home/query/queries";
 
 import { MessagesSection } from "./MessagesSection";
 import { SideSection } from "./SideSection";
@@ -14,7 +12,7 @@ import { useIsDesktopQuery } from "./state/useIsDesktopQuery";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 const Home = () => {
-  useMonthMsgQuery({ dateStr: "2022-11" });
+  // useMonthMsgQuery({ dateStr: "2022-11" });
   const [isOpen] = useAtom(isExpandAtom);
   const [isLargerW] = useIsDesktopQuery();
 
@@ -39,6 +37,7 @@ const Home = () => {
     : "2.5rem";
   // console.log("heigth", height);
   // const toolSideMinH = isLargerW ? "calc(100vh - 100px)" : "320px";
+
   return (
     <>
       <NextSeo title="ECN Express" />
@@ -77,20 +76,19 @@ const Home = () => {
           <SideSection />
         </Flex>
 
-        <Flex
-          direction="column"
-          align="center"
+        <Box
           ref={contentSectionRef}
           // eslint-disable-next-line no-nested-ternary
           w={contentW}
+          h="fit-content"
           // w={["100%", isOpen ? "70%" : "100%"]}
           minHeight="calc(100vh - 308px)"
-          bgColor="red.100"
-          transition={isOpen ? "all 0.5s ease 0.5s" : "all 0.5s ease "}
+          // bgColor="red.100"
+          // transition={isOpen ? "all 0.5s ease 0.5s" : "all 0.5s ease "}
         >
           {/*  */}
           <MessagesSection />
-        </Flex>
+        </Box>
 
         {/* <SomeText />
       <SomeImage />
