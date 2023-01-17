@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 import { isSameDay, isSameMonth } from "date-fns";
 import { useAtom } from "jotai";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { DayPicker } from "react-day-picker";
 
 import { dateAtom, dateStrAtom, dayAtom } from "../state";
@@ -20,9 +20,16 @@ export const DatePickerView = () => {
   });
   const { data: nav, isSuccess } = useSelectNavMonth({ dateStr });
 
+  const initMounted = useRef(false);
   useEffect(() => {
+    if (!initMounted.current && nav) {
+      setMonth(nav.current);
+      setSelected(nav.current);
+      initMounted.current = true;
+    }
     // eslint-disable-next-line sonarjs/no-collapsible-if
     if (nav && isSuccess) {
+      // eslint-disable-next-line sonarjs/no-collapsible-if
       if (isSameMonth(month, nav.current)) {
         setMonth(nav.current);
         setSelected(nav.current);
