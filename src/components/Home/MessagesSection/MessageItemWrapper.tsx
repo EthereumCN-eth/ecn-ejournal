@@ -20,7 +20,7 @@ export const MessageItemWrapper = ({
       py="32px"
       borderBottom="1px solid #3D3D3D"
     >
-      <HStack mb="12px">
+      <HStack mb="12px" bgColor="transparent">
         <Avatar boxSize="32px" src={msg.user.discordAvatar} />
         <Text
           css={css`
