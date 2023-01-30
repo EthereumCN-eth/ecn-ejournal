@@ -12,6 +12,8 @@
   /* Outline border for focused _and_ selected elements */
 
   margin: 1em;
+
+  font-family: "PingFang SC";
 }
 
 /* Hide elements for devices that are not screen readers */
