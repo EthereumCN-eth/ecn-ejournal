@@ -58,7 +58,7 @@ const Home = () => {
           // align="center"
           align={isLargerW ? "flex-start" : "center"}
           w={toolSideW}
-          h={toolSideH}
+          minH={toolSideH}
           position="relative"
           borderRadius={isOpen ? "0" : "100%"}
           // minH={toolSideMinH}
