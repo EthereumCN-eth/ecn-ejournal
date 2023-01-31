@@ -5,6 +5,7 @@ import { useAtom } from "jotai";
 
 import { isExpandAtom } from "../state/isExpanedAtom";
 import { useIsDesktopQuery } from "../state/useIsDesktopQuery";
+import { NEXT_PUBLIC_API_URL } from "@/constants";
 
 import { DatePickerView } from "./DatePickerView";
 // import { FloatBtn } from "./FloatBtn";
@@ -41,6 +42,9 @@ export const SideSection = () => {
         py="10px"
         aria-label="rs-btn"
         minH="48px"
+        onClick={() => {
+          window.open(`${NEXT_PUBLIC_API_URL}/rss`, "_blank");
+        }}
         css={css`
           font-family: "PingFang SC";
           font-style: normal;

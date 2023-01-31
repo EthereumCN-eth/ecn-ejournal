@@ -23,3 +23,11 @@ export const fetchMonthMessage = async ({
   }
   return response.json();
 };
+
+// export const fetchRss = async (): Promise<string> => {
+//   const response = await fetch(`${NEXT_PUBLIC_API_URL}/rss`);
+//   if (!response.ok) {
+//     throw new Error("Network response was not ok");
+//   }
+//   return response.text();
+// };

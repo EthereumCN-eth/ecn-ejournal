@@ -63,7 +63,15 @@ const Header = () => {
           ECN Discord 的 E 群誌-ejournal 频道分享和讨论。ECN
           对当天的消息进行简单审核后汇总，形成日报发布，并在 Notion 归档。
         </Text>
-        <Button variant="join" color="#E1722F" px="74px" py="10px">
+        <Button
+          onClick={() => {
+            window.open("https://discord.com/invite/eJJRBqKd3d", "_blank");
+          }}
+          variant="join"
+          color="#E1722F"
+          px="74px"
+          py="10px"
+        >
           加入Discord
         </Button>
       </VStack>
