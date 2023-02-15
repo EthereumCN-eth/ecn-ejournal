@@ -59,7 +59,7 @@ export const MessageItemWrapper = ({
             font-weight: 400;
             font-size: 1rem;
             line-height: 1.37rem;
-
+            white-space: pre-line;
             color: #ffffff;
           `}
         >
