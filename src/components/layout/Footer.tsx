@@ -5,9 +5,11 @@ import { FaDiscord, FaTwitter } from "react-icons/fa";
 const SmallWithNavigation = () => {
   return (
     <Flex width="full">
-      <HStack
+      <Flex
         // minH="308px"
-        spacing={6}
+        // spacing={6}
+        gap={6}
+        direction={["column", "column", "column", "row"]}
         color="white"
       >
         <Link target="_blank" href="http://ethereum.cn/">
@@ -22,7 +24,7 @@ const SmallWithNavigation = () => {
         <Link target="_blank" href="https://devcon.app/">
           DEVCON.APP
         </Link>
-      </HStack>
+      </Flex>
     </Flex>
   );
 };
@@ -34,7 +36,7 @@ const Footer = () => {
       justifyContent="center"
       maxW="1200px"
       p="40px"
-      direction="row"
+      // direction={["column", "row"]}
       position="relative"
     >
       <Divider
