@@ -22,7 +22,17 @@ export const MessagesSection = () => {
     <Flex w="full" height="fit-content" direction="column" align="flex-start">
       {/*  */}
       {msgs.map((msg) => {
-        if (msg.metaData.urlType === "twitter" && msg.metaData.twitterId) {
+        if (!msg.metaData) {
+          // console.log("msg", msg);
+          return (
+            <MessageItemWrapper key={msg.id} msg={msg}>
+              {null}
+            </MessageItemWrapper>
+          );
+        } else if (
+          msg.metaData.urlType === "twitter" &&
+          msg.metaData.twitterId
+        ) {
           return (
             <MessageItemWrapper key={msg.id} msg={msg}>
               <Box
